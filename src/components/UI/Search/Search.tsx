@@ -1,18 +1,25 @@
-import { FC } from 'react';
+import { FC, FormEvent, ChangeEvent } from 'react';
 
 import "./Search.scss";
 
 interface ISearchProps {
-  
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const Search: FC<ISearchProps> = () => {
+const Search: FC<ISearchProps> = ({value, onChange, onSubmit}) => {
   return (
-    <form className="search">
-      <input type="text" className="search__input" />
-      <div className="search__btn">
+    <form onSubmit={onSubmit} className="search">
+      <input
+        value={value}
+        onChange={onChange}
+        type="text"
+        className="search__input"
+      />
+      <button className="search__btn">
         <span className="search__icon"></span>
-      </div>
+      </button>
     </form>
   );
 };

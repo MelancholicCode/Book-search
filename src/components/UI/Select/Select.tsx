@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import { IOption } from '../../../utils/consts';
+import { IOption } from '../../../types/book';
 
 import "./Select.scss";
 
