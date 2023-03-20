@@ -1,0 +1,25 @@
+.filter {
+  display: flex;
+  gap: 10px;
+  &__label {
+    padding: 5px;
+    color: #fff;
+    font-weight: 700;
+  }
+  &__select {
+    cursor: pointer;
+    background: url("../../../img/icons/arrow-down.svg") right/15px no-repeat;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #000;
+    appearance: none;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    padding-right: 15px;
+    outline: none;
+  }
+  &__option {
+    
+  }
+}
