@@ -1,7 +1,6 @@
-export interface IOption {
-  name: string;
-  value: string;
-}
+import { IOption } from "../types/book";
+
+export const FETCH_BOOKS: string = "https://www.googleapis.com/books/v1/volumes";
 
 export const categoriesArr: IOption[] = [
   {name: "All", value: "all"},
