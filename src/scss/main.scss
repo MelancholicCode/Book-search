@@ -1,0 +1,25 @@
+@import url("./vars.scss");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+[class*="__container"] {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+.App {
+  min-height: 100%;
+}
