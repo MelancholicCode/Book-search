@@ -1,6 +1,6 @@
 .header {
   position: relative;
-  padding: 60px 0;
+  padding: clamp(1.875rem, 1.169rem + 3.53vw, 3.75rem) 0;
   background-color: rgba(0, 0, 0, 0.6);
   &::before {
     z-index: -1;
@@ -21,9 +21,16 @@
   &__title {
     font-size: 40px;
     color: #fff;
+    text-align: center;
   }
   &__filter-list {
     display: flex;
     gap: 30px;
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 10px;
+      align-self: flex-start;
+      align-items: flex-end;
+    }
   }
 }
