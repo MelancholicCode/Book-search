@@ -5,7 +5,7 @@ class BookStore {
   constructor() {
     makeAutoObservable(this);
   }
-  _books: IBook[] = [];
+  _books: IBook[] | undefined = [];
   _query: string = "";
 
   setBooks(books: IBook[]) {
