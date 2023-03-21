@@ -9,18 +9,27 @@ import Select from '../UI/Select/Select';
 import "./Header.scss";
 
 const Header: FC = observer(() => {
+  const [categoryValue, setCategoryValue] = useState<string>(categoriesArr[0].value);
+  const [sortingValue, setSortingValue] = useState<string>(sortArr[0].value);
   const [query, setQuery] = useState<string>('');
   const startIndex: number = 0;
   const limit: number = 30;
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey: string | undefined = process.env.REACT_APP_API_KEY;
+  const paramsArr: string[] = [
+    `key=${apiKey}`,
+    `q=${categoryValue === 'all' ? query : `${query}+subject:${categoryValue}`}`,
+    `orderBy=${sortingValue}`,
+    `maxResults=${limit}`
+  ];
 
   const fetchBooks = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     if (query.length) {
       try {
-        const res: Response = await fetch(`${FETCH_BOOKS}&q=${query}&startIndex=${startIndex}&maxResults=${limit}&key=${apiKey}`);
+        const res: Response = await fetch(`${FETCH_BOOKS}&${paramsArr.join('&')}`);
         const {items}: IFetchedData = await res.json();
         bookStore.setBooks(items);
+        console.log(items)
       } catch(err) {
         alert(err);
       }
@@ -37,8 +46,16 @@ const Header: FC = observer(() => {
           onSubmit={(e: FormEvent<HTMLFormElement>) => fetchBooks(e)}
         />
         <ul className="header__filter-list">
-          <Select title="Category" optionsArr={categoriesArr}/>
-          <Select title="Sorting by" optionsArr={sortArr}/>
+          <Select
+            value={categoryValue}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => setCategoryValue(e.target.value)}
+            title="Category"
+            optionsArr={categoriesArr}/>
+          <Select
+            value={sortingValue}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => setSortingValue(e.target.value)}
+            title="Sorting by"
+            optionsArr={sortArr}/>
         </ul>
       </div>
     </header>
