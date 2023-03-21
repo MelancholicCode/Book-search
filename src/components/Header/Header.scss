@@ -25,8 +25,8 @@
   }
   &__filter-list {
     display: flex;
-    gap: 30px;
-    @media (max-width: 480px) {
+    gap: 20px;
+    @media (max-width: 520px) {
       flex-direction: column;
       gap: 10px;
       align-self: flex-start;

@@ -16,6 +16,7 @@ const Search: FC<ISearchProps> = ({value, onChange, onSubmit}) => {
         onChange={onChange}
         type="text"
         className="search__input"
+        placeholder='Поиск книг'
       />
       <button className="search__btn">
         <span className="search__icon"></span>

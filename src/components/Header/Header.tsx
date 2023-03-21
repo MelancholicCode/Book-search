@@ -10,6 +10,7 @@ import "./Header.scss";
 
 const Header: FC = observer(() => {
   const [query, setQuery] = useState<string>('');
+  const startIndex: number = 0;
   const limit: number = 30;
   const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -17,7 +18,7 @@ const Header: FC = observer(() => {
     e.preventDefault();
     if (query.length) {
       try {
-        const res: Response = await fetch(`${FETCH_BOOKS}?q=${query}&maxResults=${limit}&key=${apiKey}`);
+        const res: Response = await fetch(`${FETCH_BOOKS}&q=${query}&startIndex=${startIndex}&maxResults=${limit}&key=${apiKey}`);
         const {items}: IFetchedData = await res.json();
         bookStore.setBooks(items);
       } catch(err) {
