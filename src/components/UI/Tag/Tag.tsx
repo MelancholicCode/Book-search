@@ -4,14 +4,14 @@ import "./Tag.scss";
 
 interface ITagProps {
   title: string;
-  classes?: string[];
+  clazz?: string;
 }
 
-const Tag: FC<ITagProps> = ({title, classes}) => {
+const Tag: FC<ITagProps> = ({title, clazz}) => {
   return (
     <li
       key={title}
-      className={classes ? [...classes, "default-tag"].join(' ') : "default-tag"}
+      className={clazz ? `${clazz} default-tag` : "default-tag"}
     >
       {title}
     </li>

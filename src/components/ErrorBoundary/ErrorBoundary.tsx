@@ -1,4 +1,5 @@
 import { Component, ReactNode } from 'react'
+import ScreenMessage from '../UI/ScreenMessage/ScreenMessage';
 
 interface IProps {
   children?: ReactNode
@@ -23,7 +24,13 @@ class ErrorBoundary extends Component<IProps, IState> {
   render(): React.ReactNode {
     if (this.state.hasError) {
       return(
-        <p>Ошибка произошла тут</p>
+        <div className="book-list">
+          <ScreenMessage
+          
+            imgUrl='https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png'>
+            Something went wrong...
+          </ScreenMessage>
+        </div>
       );
     }
 

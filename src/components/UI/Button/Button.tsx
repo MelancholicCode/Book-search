@@ -4,16 +4,16 @@ import "./Button.scss";
 
 interface IButtonProps {
   onClick?: () => void;
-  classes?: string[];
+  clazz?: string;
   disabled?: boolean;
 }
 
-const Button: FC<PropsWithChildren<IButtonProps>> = ({onClick, classes, disabled, children}) => {
+const Button: FC<PropsWithChildren<IButtonProps>> = ({onClick, clazz, disabled, children}) => {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className={classes ? [...classes, "default-btn"].join(' ') : "default-btn"}>
+      className={clazz ? `${clazz} default-btn` : "default-btn"}>
       {children}
     </button>
   );

@@ -6,6 +6,8 @@ import { IFetchedData } from '../../types/book';
 import { catalogLimit, catalogOffset } from '../../utils/consts';
 import Card from '../Card/Card';
 import Button from '../UI/Button/Button';
+import ScreenMessage from '../UI/ScreenMessage/ScreenMessage';
+import Spinner from '../UI/Spinner/Spinner';
 import "./BookList.scss";
 
 const BookList: FC = observer(() => {
@@ -48,10 +50,22 @@ const BookList: FC = observer(() => {
     fetchBooks(`${bookStore.url}&startIndex=${offset}&maxResults=${catalogLimit}`, true);
   }
 
-  if (!bookStore.url) return <p>Введите запрос</p>;
-  if (error) return <p>Произошла ошибка</p>
-  if (loading && newOffset === catalogOffset) return <p>Загрузка...</p>;
-  if (!bookStore.books.length) return <p>Ничего не удалось найти</p>
+  const renderMessage = (text?: string, imgUrl?: string) => <div className='book-list'><ScreenMessage imgUrl={imgUrl}>{text}</ScreenMessage></div>
+
+  if (!bookStore.url) {
+    return renderMessage(
+      'Above you can find the book by name',
+      'https://fsd.multiurok.ru/html/2022/11/05/s_63668557d8a08/phpyelx8o_pro-knigu_html_98f0b70cc69b1d.jpg'
+    );
+  }
+  if (error) throw error;
+  if (loading && newOffset === catalogOffset) return <Spinner clazz='book-list__spinner'/>
+  if (!bookStore.books.length) {
+    return renderMessage(
+      'Nothing was found',
+      'https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png'
+    );
+  }
 
   return (
     <div className="book-list">
@@ -69,7 +83,7 @@ const BookList: FC = observer(() => {
           ? <Button
               onClick={onAddBooks}
               disabled={newOffset > catalogOffset && loading}
-              classes={['book-list__btn']}
+              clazz='book-list__btn'
             >Load more</Button>
           : null}
     </div>
