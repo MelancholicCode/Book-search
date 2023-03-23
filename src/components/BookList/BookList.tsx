@@ -5,10 +5,12 @@ import { bookStore } from '../../store/BookStore';
 import { IFetchedData } from '../../types/book';
 import { catalogLimit, catalogOffset } from '../../utils/consts';
 import Card from '../Card/Card';
+import Button from '../UI/Button/Button';
 import "./BookList.scss";
 
 const BookList: FC = observer(() => {
   const [totalItems, setTotalItems] = useState<number>(0);
+  const [isOver, setIsOver] = useState<boolean>(false);
   const [newOffset, setNewOffset] = useState<number>(catalogOffset);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
@@ -16,6 +18,7 @@ const BookList: FC = observer(() => {
   useEffect(() => {
     if (bookStore.url) {
       fetchBooks(`${bookStore.url}&startIndex=${catalogOffset}&maxResults=${catalogLimit}`);
+      setIsOver(false);
     }
   }, [bookStore.url]);
 
@@ -24,10 +27,14 @@ const BookList: FC = observer(() => {
     getBooks<IFetchedData>(url)
     .then(data => {
       console.log(data)
-      if (data?.items) {
-        setTotalItems(data.totalItems);
-        if (isMore) return bookStore.addBooks(data.items);
-        bookStore.setBooks(data.items);
+      if (data) {
+        if (data.items) {
+          setTotalItems(data.totalItems);
+          if (isMore) return bookStore.addBooks(data.items);
+          bookStore.setBooks(data.items);
+        } else {
+          setIsOver(true);
+        }
       }
     })
     .catch(err => setError(err))
@@ -35,19 +42,20 @@ const BookList: FC = observer(() => {
   }
 
   const onAddBooks = async () => {
-    const offset = newOffset + bookStore.books.length;
+    const offset = newOffset + catalogLimit;
+    if (offset > totalItems) setIsOver(true);
     setNewOffset(offset);
     fetchBooks(`${bookStore.url}&startIndex=${offset}&maxResults=${catalogLimit}`, true);
   }
 
   if (!bookStore.url) return <p>Введите запрос</p>;
   if (error) return <p>Произошла ошибка</p>
-  if (loading) return <p>Загрузка...</p>;
+  if (loading && newOffset === catalogOffset) return <p>Загрузка...</p>;
   if (!bookStore.books.length) return <p>Ничего не удалось найти</p>
 
   return (
     <div className="book-list">
-      <p>{totalItems}</p>
+      <p className="book-list__books-count">Current books count: {totalItems}</p>
       <ul className="book-list__box">
         {bookStore.books.map(book => (
           <Card
@@ -57,13 +65,12 @@ const BookList: FC = observer(() => {
           />
         ))}
       </ul>
-      {bookStore.books.length && (newOffset + catalogLimit) < totalItems
-          ? <div
+      {bookStore.books.length && !isOver
+          ? <Button
               onClick={onAddBooks}
-              className="book-list__btn"
-            >
-              Load more
-            </div>
+              disabled={newOffset > catalogOffset && loading}
+              classes={['book-list__btn']}
+            >Load more</Button>
           : null}
     </div>
   );

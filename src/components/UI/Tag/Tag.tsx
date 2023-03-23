@@ -2,16 +2,16 @@ import { FC } from 'react';
 
 import "./Tag.scss";
 
-interface TagProps {
+interface ITagProps {
   title: string;
-  classes?: string;
+  classes?: string[];
 }
 
-const Tag: FC<TagProps> = ({title, classes}) => {
+const Tag: FC<ITagProps> = ({title, classes}) => {
   return (
     <li
       key={title}
-      className={classes || "default-tag"}
+      className={classes ? [...classes, "default-tag"].join(' ') : "default-tag"}
     >
       {title}
     </li>

@@ -1,0 +1,12 @@
+.default-btn {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 20px 30px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #444;
+  &:disabled {
+    opacity: .8;
+  }
+}

@@ -1,0 +1,34 @@
+import { Component, ReactNode } from 'react'
+
+interface IProps {
+  children?: ReactNode
+}
+
+interface IState {
+  hasError: boolean
+}
+
+class ErrorBoundary extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    this.setState({hasError: true});
+    console.error(error);
+    console.error(errorInfo);
+  }
+
+  render(): React.ReactNode {
+    if (this.state.hasError) {
+      return(
+        <p>Ошибка произошла тут</p>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
