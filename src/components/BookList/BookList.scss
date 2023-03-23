@@ -1,7 +1,9 @@
 .book-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  &__box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
   &__empty {
     text-align: center;
     font-size: 24px;

@@ -9,9 +9,7 @@ const CatalogPage: FC = observer(() => {
   return (
     <div className='catalog page'>
       <div className="catalog__container">
-        <BookList
-          booksArr={bookStore.books}
-        />
+        <BookList/>
       </div>
     </div>
   );

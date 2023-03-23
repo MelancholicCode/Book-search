@@ -1,6 +1,6 @@
 export interface IFetchedData {
   totalItems: number;
-  items: IBook[];
+  items: IBook[] | undefined;
 }
 
 export interface IBook {

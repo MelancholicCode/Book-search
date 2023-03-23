@@ -1,5 +1,7 @@
 import { IOption } from "../types/book";
 
+export const apiKey: string | undefined = process.env.REACT_APP_API_KEY;
+
 export const FETCH_BOOKS: string = "https://www.googleapis.com/books/v1/volumes?printType=books";
 
 export const categoriesArr: IOption[] = [
@@ -15,4 +17,7 @@ export const categoriesArr: IOption[] = [
 export const sortArr: IOption[] = [
   {name: "Relevance", value: "relevance"},
   {name: "Newest", value: "newest"}
-]
+];
+
+export const catalogOffset: number = 0;
+export const catalogLimit: number = 30;
