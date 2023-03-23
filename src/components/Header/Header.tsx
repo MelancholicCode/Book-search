@@ -7,12 +7,11 @@ import { categoriesArr, sortArr, FETCH_BOOKS, apiKey } from '../../utils/consts'
 import "./Header.scss";
 
 const Header: FC = observer(() => {
-  const [categoryValue, setCategoryValue] = useState<string>(categoriesArr[0].value);
   const [sortingValue, setSortingValue] = useState<string>(sortArr[0].value);
   const [query, setQuery] = useState<string>('');
   const paramsArr: string[] = [
     `key=${apiKey}`,
-    `q=${categoryValue === 'all' ? query : `${query}+subject:${categoryValue}`}`,
+    `q=${bookStore.category.value === 'all' ? query : `${query}+subject:${bookStore.category.value}`}`,
     `orderBy=${sortingValue}`,
   ];
 
@@ -33,8 +32,8 @@ const Header: FC = observer(() => {
         />
         <ul className="header__filter-list">
           <Select
-            value={categoryValue}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) => setCategoryValue(e.target.value)}
+            value={bookStore.category.value}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => bookStore.setCategoryValue(e.target.value)}
             title="Category"
             optionsArr={categoriesArr}/>
           <Select

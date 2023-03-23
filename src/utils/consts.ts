@@ -21,3 +21,9 @@ export const sortArr: IOption[] = [
 
 export const catalogOffset: number = 0;
 export const catalogLimit: number = 30;
+
+export const messageImgs = {
+  main: 'https://fsd.multiurok.ru/html/2022/11/05/s_63668557d8a08/phpyelx8o_pro-knigu_html_98f0b70cc69b1d.jpg',
+  error: 'https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png',
+  empty: 'https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png'
+}

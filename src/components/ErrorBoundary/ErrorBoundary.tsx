@@ -1,4 +1,5 @@
 import { Component, ReactNode } from 'react'
+import { messageImgs } from '../../utils/consts';
 import ScreenMessage from '../UI/ScreenMessage/ScreenMessage';
 
 interface IProps {
@@ -27,7 +28,7 @@ class ErrorBoundary extends Component<IProps, IState> {
         <div className="book-list">
           <ScreenMessage
           
-            imgUrl='https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png'>
+            imgUrl={messageImgs.error}>
             Something went wrong...
           </ScreenMessage>
         </div>

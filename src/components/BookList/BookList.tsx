@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import { getBooks } from '../../http/booksAPI';
 import { bookStore } from '../../store/BookStore';
 import { IFetchedData } from '../../types/book';
-import { catalogLimit, catalogOffset } from '../../utils/consts';
+import { catalogLimit, catalogOffset, messageImgs } from '../../utils/consts';
 import Card from '../Card/Card';
 import Button from '../UI/Button/Button';
 import ScreenMessage from '../UI/ScreenMessage/ScreenMessage';
@@ -55,7 +55,7 @@ const BookList: FC = observer(() => {
   if (!bookStore.url) {
     return renderMessage(
       'Above you can find the book by name',
-      'https://fsd.multiurok.ru/html/2022/11/05/s_63668557d8a08/phpyelx8o_pro-knigu_html_98f0b70cc69b1d.jpg'
+      messageImgs.main
     );
   }
   if (error) throw error;
@@ -63,7 +63,7 @@ const BookList: FC = observer(() => {
   if (!bookStore.books.length) {
     return renderMessage(
       'Nothing was found',
-      'https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png'
+      messageImgs.empty
     );
   }
 

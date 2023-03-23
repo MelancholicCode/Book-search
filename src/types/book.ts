@@ -6,7 +6,7 @@ export interface IFetchedData {
 export interface IBook {
   id: string;
   volumeInfo: {
-    title: string;
+    title: string | undefined;
     authors: string[] | undefined;
     categories: string[] | undefined;
     imageLinks: {
