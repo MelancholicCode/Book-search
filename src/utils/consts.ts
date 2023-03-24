@@ -3,6 +3,7 @@ import { IOption } from "../types/book";
 export const apiKey: string | undefined = process.env.REACT_APP_API_KEY;
 
 export const FETCH_BOOKS: string = "https://www.googleapis.com/books/v1/volumes?printType=books";
+export const FETCH_BOOK: string = "https://www.googleapis.com/books/v1/volumes";
 
 export const categoriesArr: IOption[] = [
   {name: "All", value: "all"},

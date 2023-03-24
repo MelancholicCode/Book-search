@@ -6,9 +6,10 @@ interface ISearchProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
+  placeHolder?: string;
 }
 
-const Search: FC<ISearchProps> = ({value, onChange, onSubmit}) => {
+const Search: FC<ISearchProps> = ({value, onChange, onSubmit, placeHolder}) => {
   return (
     <form onSubmit={onSubmit} className="search">
       <input
@@ -16,7 +17,7 @@ const Search: FC<ISearchProps> = ({value, onChange, onSubmit}) => {
         onChange={onChange}
         type="text"
         className="search__input"
-        placeholder='Поиск книг'
+        placeholder={placeHolder || ''}
       />
       <button className="search__btn">
         <span className="search__icon"></span>

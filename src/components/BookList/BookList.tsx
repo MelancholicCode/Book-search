@@ -28,7 +28,6 @@ const BookList: FC = observer(() => {
     setLoading(true);
     getBooks<IFetchedData>(url)
     .then(data => {
-      console.log(data)
       if (data) {
         if (data.items) {
           setTotalItems(data.totalItems);

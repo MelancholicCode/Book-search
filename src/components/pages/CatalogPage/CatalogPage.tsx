@@ -7,7 +7,7 @@ import "./CatalogPage.scss";
 
 const CatalogPage: FC = observer(() => {
   return (
-    <div className='catalog page'>
+    <div className='catalog-page page'>
       <div className="catalog__container">
         <ErrorBoundary>
           <BookList/>

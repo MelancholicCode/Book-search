@@ -7,6 +7,7 @@ export interface IBook {
   id: string;
   volumeInfo: {
     title: string | undefined;
+    description: string | undefined;
     authors: string[] | undefined;
     categories: string[] | undefined;
     imageLinks: {

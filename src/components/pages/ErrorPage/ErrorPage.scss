@@ -1,0 +1,15 @@
+.error-page {
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__title {
+    font-size: 50px;
+  }
+  &__text {
+    font-weight: 700;
+    font-size: 20px;
+  }
+}

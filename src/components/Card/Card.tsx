@@ -7,8 +7,10 @@ import placeholderImg from "../../img/placeholder-img.webp";
 
 import "./Card.scss";
 import { bookStore } from '../../store/BookStore';
+import { useNavigate } from 'react-router-dom';
 
 const Card: FC<IBook> = ({volumeInfo, id}) => {
+  const navigate = useNavigate();
   const img = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : placeholderImg
   let title: string | null = null;
   let category: string | null = null;
@@ -24,7 +26,7 @@ const Card: FC<IBook> = ({volumeInfo, id}) => {
     }
   }
   return (
-    <li className="card">
+    <li className="card" onClick={() => navigate(`/book/${id}`)}>
       <div className="card__img-box">
         <img className='card__img' src={img} alt="" />
       </div>
