@@ -25,6 +25,6 @@ export const catalogLimit: number = 30;
 
 export const messageImgs = {
   main: 'https://fsd.multiurok.ru/html/2022/11/05/s_63668557d8a08/phpyelx8o_pro-knigu_html_98f0b70cc69b1d.jpg',
-  error: 'https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png',
-  empty: 'https://www.pngarea.com/pngm/31/5712127_pusheen-png-pusheen-i-am-sorry-gif-png.png'
+  error: 'https://cdn131.picsart.com/291417382042211.png',
+  empty: 'https://stickerboom.ru/files/2016/10/06/4565x21d4-300x300.png'
 }
