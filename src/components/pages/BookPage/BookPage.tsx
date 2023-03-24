@@ -4,6 +4,7 @@ import { getBooks } from '../../../http/booksAPI';
 import { IBook } from '../../../types/book';
 import { apiKey, FETCH_BOOK } from '../../../utils/consts';
 import BookInfo from '../../BookInfo/BookInfo';
+import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary';
 import Spinner from '../../UI/Spinner/Spinner';
 import "./BookPage.scss";
 
@@ -30,7 +31,11 @@ const BookPage: FC = () => {
       <Spinner/>
     } else {
       if (!book) return <p>Не удалось загрузить книгу</p>;
-      return <BookInfo id={book.id} volumeInfo={book.volumeInfo}/>
+      return (
+        <ErrorBoundary>
+          <BookInfo id={book.id} volumeInfo={book.volumeInfo}/>
+        </ErrorBoundary>
+      )
     }
   }
 
